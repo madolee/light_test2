@@ -9,49 +9,46 @@ import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    TextView textView; // 작성 글자타내는 뷰
 
-    private CameraManager cameraManager;
-    private String cameraID;
+    Button button1;    // 작성 버튼9
+    Button button2;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
+
+    String txt1 = " this is txt 1";
+    String txt2 = " this is txt 2";
+
+
+
+    //@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-        try {
-            cameraID = cameraManager.getCameraIdList()[0]; // 0 is for back camera
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        textView = findViewById(R.id.textView);
+        button1 =  findViewById(R.id.button);
+        button2 =  findViewById(R.id.button2);
+
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void TorchONButtonClick(View view){
+   // @RequiresApi(api = Build.VERSION_CODES.M)
+    public void onButton1Clicked(View view){
+        textView.setText(txt1);
 
-        
-
-
-        try {
-            cameraManager.setTorchMode(cameraID, true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void TorchOFFButtonClick(View view){
+    //@RequiresApi(api = Build.VERSION_CODES.M)
+    public void onButton2Clicked(View view){
+        textView.setText(txt2);
 
 
 
-
-        try {
-            cameraManager.setTorchMode(cameraID, false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
